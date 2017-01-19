@@ -43,9 +43,10 @@ describe('electron', function () {
 
 			vfs.src('src/**/*')
 				.pipe(electron({
-					version: '0.26.0',
+					version: '0.37.5',
 					platform: 'darwin',
 					darwinIcon: path.join(__dirname, 'resources', 'myapp.icns'),
+					darwinBundleIdentifier: 'com.github.joaomoreno.gulpatomelectron.faketemplateapp',
 					token: process.env['GITHUB_TOKEN']
 				}))
 				.on('data', function (f) {
@@ -77,7 +78,7 @@ describe('electron', function () {
 
 			vfs.src('src/**/*')
 				.pipe(electron({
-					version: '0.26.0',
+					version: '0.37.5',
 					platform: 'linux',
 					token: process.env['GITHUB_TOKEN']
 				}))
@@ -114,7 +115,7 @@ describe('electron', function () {
 
 			vfs.src('src/**/*')
 				.pipe(electron({
-					version: '0.26.0',
+					version: '0.37.5',
 					platform: 'win32',
 					token: process.env['GITHUB_TOKEN']
 				}))

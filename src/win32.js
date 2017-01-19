@@ -47,7 +47,7 @@ function patchExecutable(opts) {
 		var ostream = fs.createWriteStream(tempPath);
 
 		f.contents.pipe(ostream);
-		ostream.on('finish', function () {
+		ostream.on('close', function () {
 			rcedit(tempPath, patch, function (err) {
 				if (err) { return cb(err); }
 
@@ -89,7 +89,7 @@ exports.patch = function(opts) {
 	var pass = es.through();
 
 	var src = pass
-		.pipe(removeDefaultApp())
+		.pipe(opts.keepDefaultApp ? es.through() : removeDefaultApp())
 		.pipe(patchExecutable(opts))
 		.pipe(renameApp(opts));
 
